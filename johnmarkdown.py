@@ -15,6 +15,9 @@ def append_markdown(head_name, append_name, sep="\n"):
     append_file = open(append_name, "r")
     head_file.write(sep + append_file.read())
 
+def clear_output_file(path):
+    open(path, 'w').close()
+
 def go(directory, sep):
     md_files = list_markdown(".")
     num_md_files = len(md_files)
@@ -22,8 +25,9 @@ def go(directory, sep):
         print("Nothing to merge")
     else:
         print("Mergin in alphabetic order")
-        head = md_files[0]
-        for i in range(1, num_md_files):
+        head = "output.md"
+        clear_output_file(head)
+        for i in range(0, num_md_files):
             append_markdown(head, md_files[i], sep)
 
 go(".", "\n\n")
